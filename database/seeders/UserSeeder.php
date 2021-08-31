@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -16,23 +17,32 @@ class UserSeeder extends Seeder
     {
         $admin = User::create([
             
-            'username' => 'Admin',
-            'nama' => 'Admin',
-            'tipe_user' => 'admin',
-            'nomor_hp' => '-',
-            'password' => bcrypt('admin12345'),
-            // 'nomor_hp' => '082385786666'
+            'username' => 'Bendahara',
+            'nama' => 'Bendahara',
+            'password' => bcrypt('1234'),
+            'created_at' => Carbon::now()
         ]);
 
-        $admin->assignRole('admin');
+        $admin->assignRole('bendahara');
 
-        // $user = User::create([
-        //     'name' => 'Pegawai1',
-        //     'email' => 'pegawai@gmail.id',
-        //     'password' => bcrypt('12345'),
-        //     'nomor_hp' => '082385711666'
-        // ]);
+        $pimpinan = User::create([
+            
+            'username' => 'Pimpinan',
+            'nama' => 'Pimpinan',
+            'password' => bcrypt('1234'),
+            'created_at' => Carbon::now()
+        ]);
 
-        // $user->assignRole('pegawai');
+        $pimpinan->assignRole('pimpinan');
+
+        $mhs = User::create([
+            
+            'username' => 'mahasiswa',
+            'nama' => 'mahasiswa',
+            'password' => bcrypt('1234'),
+            'created_at' => Carbon::now()
+        ]);
+
+        $mhs->assignRole('mahasiswa');
     }
 }

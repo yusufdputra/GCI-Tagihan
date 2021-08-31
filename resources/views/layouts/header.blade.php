@@ -7,42 +7,19 @@
   <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
   <meta content="Coderthemes" name="author" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>INVENTORI GUDANG PT TUJUHSATU MAHAKARYA INDONESIA</title>
+  <title>GCI</title>
 
-  <link rel="shortcut icon" href="{{asset('adminto/images/brand/logo.png')}}">
-
-  <!-- App css -->
-  <link href="{{asset('adminto/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/css/icons.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/css/style.css')}}" rel="stylesheet" type="text/css" />
-
-  <script src="{{asset('adminto/js/modernizr.min.js')}}"></script>
-
-  <!-- DataTables -->
-  <link href="{{asset('adminto/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-  <link href="{{asset('adminto/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-  <link href="{{asset('adminto/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
-  <!-- Notification css (Toastr) -->
-  <link href="{{asset('adminto/plugins/toastr/toastr.min.css')}}" rel="stylesheet" type="text/css" />
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{asset('stisla/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('stisla/assets/css/components.css')}}">
 
-  <script src="{{asset('adminto/js/jquery.min.js')}}"></script>
-  <!-- Custom box css -->
-  <link href="{{asset('adminto/plugins/custombox/dist/custombox.min.css')}}" rel="stylesheet">
-
-  <!-- time picker -->
-  <link href="{{asset('adminto/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
-  <!-- form Uploads -->
-  <link href="{{asset('adminto/plugins/fileuploads/css/dropify.min.css')}}" rel="stylesheet" type="text/css" />
-
-  <!-- select2 -->
-  <link href="{{asset('adminto/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
-
-  <link href="{{asset('adminto/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-  <!-- @toastr_css -->
+  
 
 </head>
 
-<body >
-
+<body>
