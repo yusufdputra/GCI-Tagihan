@@ -17,4 +17,6 @@ class Tagihan extends Model
     {
         return $this->hasMany(Semester::class, 'id', 'id_semester')->withTrashed();
     }
+
+    
 }

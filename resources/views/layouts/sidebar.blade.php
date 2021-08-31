@@ -22,12 +22,13 @@
           @role('bendahara')
           <li><a class="nav-link" href="{{('semester')}}">Kelola Semester</a></li>
           <li><a class="nav-link" href="{{('tagihan')}}">Kelola Tagihan</a></li>
+          <li><a class="nav-link" href="{{('mahasiswa')}}">Mahasiswa</a></li>
           @endrole
           @role('pimpinan')
           <li><a class="nav-link" href="layout-transparent.html">Data Mahasiswa</a></li>
           @endrole
-          @role('mahasiswa|bendahara')
-          <li><a class="nav-link" href="{{('mahasiswa')}}">Mahasiswa</a></li>
+          @role('mahasiswa')
+          <li><a class="nav-link" href="{{('pembayaran')}}">Pembayaran</a></li>
           @endrole
         </ul>
       </li>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembayaran;
 use App\Models\Semester;
 use App\Models\Tagihan;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -35,13 +37,31 @@ class TagihanController extends Controller
             ]);
 
             if (!$cek->exists()) {
-                $query = Tagihan::insert([
+                // tambah data tagihan
+                $query = Tagihan::insertGetId([
                     'id_semester' => $request->id_semester,
                     'nama_tagihan' => $request->nama_tagihan,
                     'jumlah_bayar' => $request->jumlah_bayar,
                     'created_at' => Carbon::now(),
                 ]);
-                if ($query) {
+                // tambah ke semua mahasiswa di tabel pembayaran
+                // get data mahasiswa
+                $mahasiswa = User::whereHas(
+                    'roles', function($q){
+                        $q->where('name', 'mahasiswa');
+                    }
+                )->get();
+
+                // tambahkan ke tabel pembayaran
+                foreach ($mahasiswa as $key => $value) {
+                    Pembayaran::insert([
+                        'id_mahasiswa' => $value->id,
+                        'id_tagihan' => $query,
+                        'status' => 0,
+                        'created_at' => Carbon::now()
+                    ]);
+                }
+                if ($query != null) {
                     return redirect()->back()->with('success', 'Tagihan berhasil ditambah');
                 } else {
                     return redirect()->back()->with('alert', 'Tagihan gagal ditambah');

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\TagihanController;
 use Illuminate\Support\Facades\Auth;
@@ -35,11 +36,19 @@ Route::group(['middleware' => ['role:bendahara']], function () {
     Route::POST('/semester/update/', [SemesterController::class, 'update'])->name('semester.update');
     Route::POST('/semester/hapus/', [SemesterController::class, 'hapus'])->name('semester.hapus');
 
-
     // kelola tagihan
     Route::get('/tagihan', [TagihanController::class, 'index'])->name('semester');
     Route::post('/tagihan/store', [TagihanController::class, 'store'])->name('tagihan.store');
     Route::get('/tagihan/edit/{id}', [TagihanController::class, 'edit'])->name('tagihan/edit');
     Route::POST('/tagihan/update/', [TagihanController::class, 'update'])->name('tagihan.update');
     Route::POST('/tagihan/hapus/', [TagihanController::class, 'hapus'])->name('tagihan.hapus');
+
+   
+    
+});
+
+Route::group(['middleware' => ['role:mahasiswa']], function () {
+     // kelola pembayaran
+     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+     Route::get('/pembayaran/update/{id}', [PembayaranController::class, 'update'])->name('pembayaran/update');
 });
