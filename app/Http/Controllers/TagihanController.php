@@ -27,8 +27,6 @@ class TagihanController extends Controller
 
     public function store(Request $request)
     {
-      
-
         try {
             // cek apakah jenis tagihan sudah ada atau belum
             $cek = Tagihan::where([
@@ -47,7 +45,8 @@ class TagihanController extends Controller
                 // tambah ke semua mahasiswa di tabel pembayaran
                 // get data mahasiswa
                 $mahasiswa = User::whereHas(
-                    'roles', function($q){
+                    'roles',
+                    function ($q) {
                         $q->where('name', 'mahasiswa');
                     }
                 )->get();
@@ -72,5 +71,18 @@ class TagihanController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('alert', 'Tagihan gagal ditambah');
         }
+    }
+
+    public function detail($id_tagihan)
+    {
+        
+        $tagihan = Tagihan::find($id_tagihan)->with('semester')->first();
+        $title = "Detail Pembayaran ".$tagihan['nama_tagihan'] . " ". $tagihan['semester'][0]['nama']. " - ". $tagihan['semester'][0]['tahun_ajar'];
+
+        $pembayaran = Pembayaran::with('tagihan', 'mahasiswa')
+            ->where('id_tagihan', $id_tagihan)->get(); 
+
+
+        return view('tagihan.detail', compact('title', 'pembayaran', 'id_tagihan'));
     }
 }

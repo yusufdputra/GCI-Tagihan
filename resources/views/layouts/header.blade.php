@@ -23,3 +23,6 @@
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

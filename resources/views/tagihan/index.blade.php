@@ -14,10 +14,12 @@
     </div>
 
     <div class="section-body">
-      <h2 class="section-title">
 
+      @role('bendahara')
+      <h2 class="section-title">
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah</button>
       </h2>
+      @endrole
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
@@ -35,6 +37,8 @@
         <div class="col-12 col-md-12 col-lg-12">
           <div class="card">
             <div class="card-body">
+
+            
               <div class="table-responsive">
                 <table class="table table-bordered table-md">
                   <thead>
@@ -54,8 +58,12 @@
                       <td>{{$value->semester[0]['nama']}}</td>
                       <td>{{$value->nama_tagihan}}</td>
                       <td>{{$value->jumlah_bayar}}</td>
-                      <td><a href="#" class="btn btn-primary">Edit</a>
-                      <a href="#" class="btn btn-success">Lihat</a></td>
+                      <td>
+                        @role('bendahara')
+                        <a href="#" class="btn btn-primary">Edit</a>
+                        @endrole
+                        <a href="{{url('tagihan/detail',[$value->id])}}" class="btn btn-success">Lihat</a>
+                      </td>
                       </td>
 
                     </tr>
@@ -117,5 +125,7 @@
     </div>
   </div>
 </div>
+
+
 
 @endsection

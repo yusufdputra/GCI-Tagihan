@@ -20,6 +20,6 @@ class Pembayaran extends Model
 
     public function mahasiswa()
     {
-        return $this->hasMany(User::class, 'id', 'id')->withTrashed();
+        return $this->hasMany(User::class, 'id', 'id_mahasiswa')->withTrashed();
     }
 }

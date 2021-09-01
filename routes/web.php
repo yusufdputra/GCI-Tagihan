@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\TagihanController;
+use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,16 @@ Route::group(['middleware' => ['role:bendahara']], function () {
 });
 
 Route::group(['middleware' => ['role:mahasiswa']], function () {
-     // kelola pembayaran
-     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
-     Route::get('/pembayaran/update/{id}', [PembayaranController::class, 'update'])->name('pembayaran/update');
+    // kelola pembayaran
+    Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+    Route::get('/pembayaran/update/{id}', [PembayaranController::class, 'update'])->name('pembayaran/update');
+    Route::get('/pembayaran/{id}', [PembayaranController::class, 'getBySemester'])->name('pembayaran');
+});
+Route::group(['middleware' => ['role:pimpinan|bendahara']], function () {
+    // kelola tagihan
+    Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan');
+    Route::get('/tagihan/detail/{id}', [TagihanController::class, 'detail'])->name('tagihan/detail');
+
+    // render chart pembayaran
+    Route::get('/getSudahBayar/{id}', [PembayaranController::class, 'getSudahBayar'])->name('getSudahBayar');
 });

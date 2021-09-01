@@ -17,6 +17,8 @@
       <h2 class="section-title">
 
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah</button>
+
+
       </h2>
 
       @if(\Session::has('alert'))
@@ -36,6 +38,20 @@
           <div class="card">
             <div class="card-body">
               <div class="table-responsive">
+                <div class="form-group">
+                  <!-- <div class="input-group mb-3">
+                    <select required class="form-control" id="pilih_semester" name="id_semester">
+                      <option selected disabled>Semua</option>
+                      @foreach ($semester AS $key=>$value)
+                      <option value="{{$value->id}}">{{$value->nama}} - {{$value->tahun_ajar}}</option>
+                      @endforeach
+                    </select>
+                    <div class="input-group-append">
+                      <button onclick="filter()" class="btn btn-primary" type="button">Button</button>
+                    </div>
+                  </div> -->
+                </div>
+
                 <table class="table table-bordered table-md">
                   <thead>
                     <tr>
@@ -78,6 +94,24 @@
   </section>
 </div>
 
+<!-- <script type="text/javascript">
+  function filter() {
+    var semester = document.getElementById('pilih_semester').value;
+    $.ajax({
 
+      url: '{{url("pembayaran")}}/' + semester,
+      type: 'GET',
+      dataType: 'json',
+      success: 'success',
+
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(data) {
+        alert('Gagal memanggil data')
+      }
+    })
+  }
+</script> -->
 
 @endsection

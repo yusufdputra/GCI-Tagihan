@@ -20,10 +20,9 @@ class PembayaranController extends Controller
     {
         $title = "Kelola Pembayaran";
         $pembayaran = Pembayaran::with('tagihan', 'mahasiswa')->where('id_mahasiswa', Auth::user()->id)->get();
-       
-        
-       
-        return view('pembayaran.index', compact('title', 'pembayaran'));
+        $semester = Semester::all();
+
+        return view('pembayaran.index', compact('title', 'pembayaran', 'semester'));
     }
 
     public function update($id)
@@ -39,4 +38,25 @@ class PembayaranController extends Controller
             return redirect()->back()->with('alert', 'Gagal melakukan pembayaran');
         }
     }
+
+    public function getSudahBayar($id_tagihan)
+    {
+        
+        $data['sudah'] = Pembayaran::where('status', 1)->where('id_tagihan', $id_tagihan)->get();
+        $data['belum'] = Pembayaran::where('status', 0)->where('id_tagihan', $id_tagihan)->get();
+        return $data;
+    }
+
+    // public function getBySemester($semester)
+    // {
+    //     return $tagihan = Tagihan::select('id')
+    //         ->where('id_semester', $semester)
+    //         ->get()
+    //         ->toArray();
+
+    //      Pembayaran::with('tagihan', 'mahasiswa')
+    //         ->where('id_mahasiswa', Auth::user()->id)
+    //         ->whereIn('id_tagihan',[$tagihan])
+    //         ->get();
+    // }
 }
