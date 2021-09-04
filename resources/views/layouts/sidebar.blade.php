@@ -22,7 +22,6 @@
           @role('bendahara')
           <li><a class="nav-link" href="{{route('semester')}}">Kelola Semester</a></li>
           <li><a class="nav-link" href="{{route('tagihan')}}">Kelola Tagihan</a></li>
-          <li><a class="nav-link" href="{{route('mahasiswa')}}">Mahasiswa</a></li>
           @endrole
           @role('pimpinan')
           <li><a class="nav-link" href="{{route('tagihan')}}">Tagihan Pembayaran</a></li>

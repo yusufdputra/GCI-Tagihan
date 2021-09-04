@@ -17,7 +17,7 @@
 
       @role('bendahara')
       <h2 class="section-title">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#modalTambah">Tambah</button>
       </h2>
       @endrole
 
@@ -60,9 +60,10 @@
                       <td>{{$value->jumlah_bayar}}</td>
                       <td>
                         @role('bendahara')
-                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" data-toggle="modal" data-target="#modalEdit" data-id="{{$value->id}}" class="btn btn-primary btn-sm edit">Edit</a>
+                        <a href="#" data-toggle="modal" data-target="#modalHapus" data-id="{{$value->id}}" class="btn btn-danger btn-sm hapus">Hapus</a>
                         @endrole
-                        <a href="{{url('tagihan/detail',[$value->id])}}" class="btn btn-success">Lihat</a>
+                        <a href="{{url('tagihan/detail',[$value->id])}}" class="btn btn-success btn-sm">Lihat</a>
                       </td>
                       </td>
 
@@ -94,7 +95,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label>Semeseter</label>
+            <label>Semester</label>
             <select required class="form-control" name="id_semester">
               @foreach ($semester AS $key=>$value)
               <option value="{{$value->id}}">{{$value->nama}} - {{$value->tahun_ajar}}</option>
@@ -126,6 +127,107 @@
   </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="POST" action="{{ route('tagihan.update') }}" class="needs-validation" novalidate="">
+        @csrf
+        <input type="hidden" id="edit_id" name="id">
+        <div class="modal-header">
+          <h5 class="modal-title">Tambah Tagihan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Semester</label>
+            <select required class="form-control" id="id_semester" name="id_semester">
+              @foreach ($semester AS $key=>$value)
+              <option value="{{$value->id}}">{{$value->nama}} - {{$value->tahun_ajar}}</option>
+              @endforeach
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Jenis Tagihan</label>
+            <select required class="form-control" id="nama_tagihan" name="nama_tagihan">
+              <option value="SPP">SPP</option>
+              <option value="Uang Kontribusi">Uang Kontribusi</option>
+              <option value="Uang Sosial">Uang Sosial</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Jumlah Bayar</label>
+            <input required type="number" class="form-control" id="jumlah_bayar" placeholder="Rp. ---" name="jumlah_bayar">
+
+          </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalHapus">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="POST" action="{{ route('tagihan.hapus') }}" class="needs-validation" novalidate="">
+        @csrf
+        <input type="hidden" id="hapus_id" name="id">
+        <div class="modal-header">
+          <h5 class="modal-title">Yakin?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <p>Yakin ingin menghapus tagihan ini?</p>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak sekarang</button>
+          <button type="submit" class="btn btn-danger">Yakin</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ $('.edit').click(function() {
+    var id = $(this).data('id');
+    $('#edit_id').val(id)
+    
+    $.ajax({
+      url: '{{url("tagihan/edit")}}/' + id,
+      type: 'GET',
+      dataType: 'json',
+      success: 'success',
+      success: function(data) {
+        
+        $('#edit_id').val(id)
+        $('#id_semester').val(data['id_semester'])
+        $('#nama_tagihan').val(data['nama_tagihan'])
+        $('#jumlah_bayar').val(data['jumlah_bayar'])
+
+      },
+      error: function(data) {
+        toastr.error('Gagal memanggil data! ')
+      }
+    })
+    
+  });
+
+  $('.hapus').click(function() {
+    var id = $(this).data('id');
+    $('#hapus_id').val(id)
+  });
+</script>
 
 
 @endsection

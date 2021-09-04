@@ -50,7 +50,7 @@
                       <td>{{$key+1}}</td>
                       <td>{{$value->mahasiswa[0]['nama']}}</td>
                       <td>{{$value->tagihan[0]['jumlah_bayar']}}</td>
-                      <td>{{$value->created_at}}</td>
+                      <td>{{$value->updated_at}}</td>
                       <td>
                         @if ($value->status != 0)
                         <span class="badge badge-success">Lunas</span>

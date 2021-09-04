@@ -44,15 +44,13 @@ Route::group(['middleware' => ['role:bendahara']], function () {
     Route::POST('/tagihan/update/', [TagihanController::class, 'update'])->name('tagihan.update');
     Route::POST('/tagihan/hapus/', [TagihanController::class, 'hapus'])->name('tagihan.hapus');
 
-   
-    
 });
 
 Route::group(['middleware' => ['role:mahasiswa']], function () {
     // kelola pembayaran
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     Route::get('/pembayaran/update/{id}', [PembayaranController::class, 'update'])->name('pembayaran/update');
-    Route::get('/pembayaran/{id}', [PembayaranController::class, 'getBySemester'])->name('pembayaran');
+    Route::get('/bayar/{id}', [PembayaranController::class, 'getBySemester'])->name('bayar');
 });
 Route::group(['middleware' => ['role:pimpinan|bendahara']], function () {
     // kelola tagihan

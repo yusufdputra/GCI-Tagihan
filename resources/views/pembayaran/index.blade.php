@@ -14,12 +14,11 @@
     </div>
 
     <div class="section-body">
+      @role('bendahara')
       <h2 class="section-title">
-
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah</button>
-
-
       </h2>
+      @endrole
 
       @if(\Session::has('alert'))
       <div class="alert alert-danger">
@@ -72,10 +71,10 @@
                       <td>{{$value->tagihan[0]['jumlah_bayar']}}</td>
                       <td>
                         @if ($value->status != 0)
-                        <a href="#" class="btn btn-success">Lunas</a>
+                        <span class="badge badge-success">Lunas</span>
                         @else
-                        <a href="#" class="btn btn-danger">Belum Lunas</a>
-                        <a href="{{url('pembayaran/update',[$value->id])}}" target="_BLANK" class="btn btn-primary">Bayar</a>
+                        <span class="badge badge-danger">Belum Lunas</span>
+                        <a href="{{url('pembayaran/update',[$value->id])}}" target="_BLANK" class="btn btn-primary btn-sm">Bayar</a>
                         @endif
                       </td>
 

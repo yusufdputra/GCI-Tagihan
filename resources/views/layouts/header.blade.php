@@ -18,11 +18,14 @@
   <link rel="stylesheet" href="{{asset('stisla/assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('stisla/assets/css/components.css')}}">
 
-  
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
